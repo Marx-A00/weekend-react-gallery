@@ -60,6 +60,15 @@ To practice passing values as `props` in React, you must build your gallery app 
     * The element that contains a GalleryItem's description text must have the `data-testid="description"` attribute.
   * Each GalleryItem must have a way to like a post when clicking on an element with `data-testid="like"`
 
+  Componenets that need to be added: 
+  Gallery list (get request)
+  Gallery Item (not sure if needs to be a singular item, most likely just another get request or the same one)
+
+  Gallery liking(put request)
+
+
+
+
 ## Wireframes
 
 Images don't **need** to be *100px x 100px*, but it will be a better user experience if the dimensions remain consisten when toggling between showing the image and description.
