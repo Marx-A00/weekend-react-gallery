@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
 import Header from "../Header/Header";
-import axios from "axios";
-import ImageList from '../ImageList/ImageList';
+import axios from 'axios';
+import GalleryList from '../GalleryList/GalleryList';
 
 function App() {
-  const [GalleryList,SetGalleryList] = useState([]);
 
   useEffect(() => {
     displayGallery();
   }, []);
 
+  const [galleryList,setGalleryList] = useState([]);
+
   const displayGallery = () => {
     axios
       .get("/gallery")
       .then((response) => {
-        SetGalleryList(response.data);
+        setGalleryList(response.data);
       })
       .catch((err) => {
         alert("error getting gallery");
@@ -23,15 +24,17 @@ function App() {
   };
 
   return (
-    <div>
+    <div data-testid="app">
       <Header />
-      <ImageList imageList={GalleryList} />
+      <GalleryList galleryList={galleryList} />
 
   
       <p>The gallery goes here!</p>
 
 
-      <img height={150} width={150} src="images/goat_small.jpg" />
+      <img height={150} width={150} src="images/goat_small.jpg" /> 
+      {/* could I do galleryList[0].url for source? */}
+      <img height={150} width={150} src="images/stackMore_TalkLess.JPG" />
     </div>
   );
 }
