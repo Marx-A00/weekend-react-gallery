@@ -1,12 +1,15 @@
 import GalleryImage from "./GalleryImage";
 
-function GalleryList({ galleryList }) {
+function GalleryList({ galleryList,displayGallery }) {
   return (
     <>
     <div data-testid="galleryList" className="ItemList">
       {
       galleryList.map((image) => {
-        return <GalleryImage key={image.id} image={image.title} />;
+        return <GalleryImage
+         key={image.id}
+          image={image}
+          displayGallery={displayGallery} />;
       })
       }
     </div>

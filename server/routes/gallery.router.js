@@ -5,6 +5,23 @@ const router = express.Router();
 // PUT /gallery/like/:id
 router.put("/like/:id", (req, res) => {
   // code here
+  let idOfImage = req.params.id
+  const sqlText =
+   `
+   UPDATE "gallery"
+   SET "likes" = "likes" + 1
+   WHERE "id" = ($1);
+   `
+
+   const sqlValues= [idOfImage];
+
+   pool.query(sqlText,sqlValues)
+   .then((dbResult)=>{
+    res.sendStatus(200);
+   })
+   .catch((dbError) =>{
+    res.sendStatus(500);
+   })
 });
 
 // GET /gallery

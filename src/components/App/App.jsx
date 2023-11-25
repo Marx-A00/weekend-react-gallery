@@ -26,15 +26,9 @@ function App() {
   return (
     <div data-testid="app">
       <Header />
-      <GalleryList galleryList={galleryList} />
-
-  
-      <p>The gallery goes here!</p>
-
-
-      <img height={150} width={150} src="images/goat_small.jpg" /> 
-      {/* could I do galleryList[0].url for source? */}
-      <img height={150} width={150} src="images/stackMore_TalkLess.JPG" />
+      <GalleryList
+      displayGallery={displayGallery}
+       galleryList={galleryList} />
     </div>
   );
 }
