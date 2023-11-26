@@ -9,6 +9,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/gallery', gallery);
+app.use('/gallery_memes',gallery_memes);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT,  () => {

@@ -22,12 +22,26 @@ function App() {
         console.log(err);
       });
   };
+  // may be fucked up, how does comp know which get route to choose??
+  // may have to fuck with the routes
+  const displayAlternateGallery= () =>{
+    axios
+    .get("/gallery_memes")
+    .then((response) => {
+      setGalleryList(response.data);
+    })
+    .catch((err) => {
+      alert("error getting gallery");
+      console.log(err);
+    });
+
+  }
 
   return (
     <div data-testid="app">
       <Header />
       <GalleryList
-      displayGallery={displayGallery}
+      displayGallery={displayAlternateGallery}
        galleryList={galleryList} />
     </div>
   );
