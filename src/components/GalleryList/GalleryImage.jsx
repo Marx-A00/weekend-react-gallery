@@ -1,11 +1,12 @@
 import axios from 'axios';
-import {useState} from 'react';
-import { Tooltip } from 'react-tooltip'
-function GalleryImage({ image ,displayGallery}) {
-  let determinedPath = [[5,5],[5,4],[5,3],[5,2],[5,1],[5,0]];
+import {useState,useRef} from 'react';
 
-
+function GalleryImage({ image ,displayGallery,steps}) {
+  const determinedPath = [[5,5],[5,4],[5,3],[5,2],[5,1],[5,0],[4,0]];
+  
+  
   const [isShowingDescription, setDescriptionStatus] = useState(false);
+  
 
 
   const toggleDescription = () =>{
@@ -15,46 +16,38 @@ function GalleryImage({ image ,displayGallery}) {
   }
 
   function handleMouseEnter(e){
+    console.log("Steps top of handleMouseEnter :",steps);
     // gonna need a Current path variable to keep track of current path
 
-    let xCoordinate = e.target.getAttribute('row');
-    let yCoordinate = e.target.getAttribute('column');
-    console.log(e.target.getAttribute('row'),e.target.getAttribute('column'));
-    if(compareCoordinateWithMazeSolution(xCoordinate,yCoordinate)){
-      setDescriptionStatus(true);
-    }
-  
-    
+    let xCoordinate = Number(e.target.getAttribute('row'));
+    console.log('x coord:',xCoordinate)
+    let yCoordinate = Number(e.target.getAttribute('column'));
+    console.log('y coord:',yCoordinate)
+    let coordinateArray = [xCoordinate,yCoordinate];
+    console.log("coordinate Array: ",coordinateArray);
+    compareCoordinateWithMazeSolution(xCoordinate,yCoordinate,steps);
 
   }
+
   // current step on path variable may be needed
   function compareCoordinateWithMazeSolution(xCoordinate,yCoordinate){
-    if(xCoordinate != determinedPath[0][0] ||
-      yCoordinate != determinedPath[0][1])
+    // error handling goes here
+    console.log(" steps top of compare function:", steps.current);
+    console.log("expected element in determined path array",determinedPath[steps.current][0],determinedPath[steps.current][1]);
+    if(xCoordinate !== determinedPath[steps.current][0] ||
+      yCoordinate !== determinedPath[steps.current][1])
       {
         alert("wrong step!");
       }
+
       else{
-        return true;
+        steps.current++;
+        console.log("steps inside compare",steps.current);
       }
   }
 
 
   
-  const displayNormalImage = () =>{
-    return(
-      <div>
-      <img
-      className='image'
-      height={150} width={150} src={`${image.url}`}
-      title="galleryItem">
-      </img>
-
-      </div>
-
-    )
-
-  }
 
   const displayDescription = () => {
 
