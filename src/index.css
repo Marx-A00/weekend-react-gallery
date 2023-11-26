@@ -21,13 +21,13 @@ h1 {
 .ItemForm {
   padding: 1em;
   margin: 2em;
-  max-width: 800px;
+  max-width: 900px;
   border: 1px solid black;
 }
 
 .ItemList {
   margin: 2em;
-  max-width: 800px;
+  max-width: 902px;
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
