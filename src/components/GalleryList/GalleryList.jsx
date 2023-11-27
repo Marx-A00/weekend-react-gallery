@@ -1,7 +1,7 @@
 import {useRef} from "react"
 import GalleryImage from "./GalleryImage";
 
-function GalleryList({ galleryList,displayGallery,displayAlternateGallery}) {
+function GalleryList({ galleryList,displayGallery,displayAlternateGallery,alternateGalleryStatus}) {
   const steps= useRef(0);
 
   return (
@@ -15,7 +15,8 @@ function GalleryList({ galleryList,displayGallery,displayAlternateGallery}) {
           image={image}
           steps={steps}
           displayGallery={displayGallery}
-          displayAlternateGallery={displayAlternateGallery}/>;
+          displayAlternateGallery={displayAlternateGallery}
+          alternateGalleryStatus={alternateGalleryStatus}/>;
       })
       }
     </div>

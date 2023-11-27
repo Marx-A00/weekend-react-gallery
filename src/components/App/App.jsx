@@ -1,12 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from "../Header/Header";
 import axios from 'axios';
 import GalleryList from '../GalleryList/GalleryList';
+import GalleryImage from '../GalleryList/GalleryImage';
 
 function App() {
+  const alternateGalleryStatus = useRef(false);
 
   useEffect(() => {
-    displayGallery();
+    if(alternateGalleryStatus.current == false){
+      displayGallery();
+    }
+    else{
+      displayAlternateGallery();
+    }
   }, []);
 
   const [galleryList,setGalleryList] = useState([]);
@@ -43,7 +50,8 @@ function App() {
       <GalleryList
       displayGallery={displayGallery}
       displayAlternateGallery={displayAlternateGallery}
-       galleryList={galleryList} />
+       galleryList={galleryList}
+       alternateGalleryStatus={alternateGalleryStatus} />
     </div>
   );
 }
