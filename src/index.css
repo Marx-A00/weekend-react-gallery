@@ -4,10 +4,11 @@
 }
 
 body {
+
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #F1F1F1;
+  background-color:white;
 }
 
 h1 {
@@ -20,9 +21,12 @@ h1 {
 
 
 .ItemList {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  left:20%;
   margin: 2em;
-  max-width: 902px;
-  border: 1px solid black;
+  max-width: 1600px;
   display: flex;
   flex-wrap: wrap;
 }

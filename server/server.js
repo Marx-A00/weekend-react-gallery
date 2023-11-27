@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const gallery = require('./routes/gallery.router.js');
+const gallery_memes = require('./routes/gallery_memes.router.js');
 const PORT = process.env.PORT || 5001;
 
 /** ---------- MIDDLEWARE ---------- **/

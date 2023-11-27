@@ -1,13 +1,19 @@
 import axios from 'axios';
 import {useState,useRef} from 'react';
 
-function GalleryImage({ image ,displayGallery,steps}) {
-  const determinedPath = [[5,5],[5,4],[5,3],[5,2],[5,1],[5,0],[4,0]];
-  
+function GalleryImage({ image ,displayGallery,steps,displayAlternateGallery}){
+  const determinedPath =
+[
+  [9, 9],[9, 8],[9, 7],[9, 6],[9, 5],[8, 5],[8, 6],[8, 7],[8, 8],[7,8],
+  [6,8],[5,8],[5,9],[4,9],[3,9],[2,9],[1,9],[0,9],[0,8],
+  [0,7],[0,6],[0,5],[0,4],[0,3],[0,2],[0,1],[0,0],[1,0],[2,0],[3,0],[3,1], 
+  [2,1],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[3,7],[4,7],[5,7],
+  [6,7],[7,7],[7,6],[7,5],[7,4],[7,3],[7,2],[6,2],[5,2],[5,3],[4,3],[3,3],[3,4],[4,4]
+]
+
   
   const [isShowingDescription, setDescriptionStatus] = useState(false);
   
-
 
   const toggleDescription = () =>{
 
@@ -16,28 +22,33 @@ function GalleryImage({ image ,displayGallery,steps}) {
   }
 
   function handleMouseEnter(e){
-    console.log("Steps top of handleMouseEnter :",steps);
-    // gonna need a Current path variable to keep track of current path
+    // // gonna need a Current path variable to keep track of current path
 
     let xCoordinate = Number(e.target.getAttribute('row'));
-    console.log('x coord:',xCoordinate)
     let yCoordinate = Number(e.target.getAttribute('column'));
-    console.log('y coord:',yCoordinate)
-    let coordinateArray = [xCoordinate,yCoordinate];
-    console.log("coordinate Array: ",coordinateArray);
     compareCoordinateWithMazeSolution(xCoordinate,yCoordinate,steps);
-
   }
+
 
   // current step on path variable may be needed
   function compareCoordinateWithMazeSolution(xCoordinate,yCoordinate){
     // error handling goes here
+    // handle current path
     console.log(" steps top of compare function:", steps.current);
     console.log("expected element in determined path array",determinedPath[steps.current][0],determinedPath[steps.current][1]);
-    if(xCoordinate !== determinedPath[steps.current][0] ||
+    if(xCoordinate !== determinedPath[steps.current][0] ||  // OR or AND? AND??
       yCoordinate !== determinedPath[steps.current][1])
       {
         alert("wrong step!");
+        location.reload();
+      }
+
+      //winning scenario
+      else if(xCoordinate === 4 &&
+        yCoordinate === 4){
+          // 'it's just a dream'
+          displayAlternateGallery();
+
       }
 
       else{
@@ -73,7 +84,6 @@ function GalleryImage({ image ,displayGallery,steps}) {
         title="galleryItem">
         </img>
 
-
         </div>
       )
     }
@@ -92,13 +102,12 @@ function GalleryImage({ image ,displayGallery,steps}) {
 
 
 
+
   return (
     <div style={{ width: 150, height: 150 }}
     onMouseEnter={handleMouseEnter}
      data-testid="galleryItem"
        className="image">
-  
-        
           <div data-testid="toggle" onClick={toggleDescription}>
             {displayDescription()}
           </div>
@@ -108,4 +117,4 @@ function GalleryImage({ image ,displayGallery,steps}) {
 
 export default GalleryImage;
 
-// desired path (5,5),(5,4),(5,3),(5,2),(5,1),(5,0)
+

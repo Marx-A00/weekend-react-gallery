@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header>
-      <h1>React Gallery</h1>
+      <h1>React <em>Maze</em></h1>
     </header>
   );
 }
