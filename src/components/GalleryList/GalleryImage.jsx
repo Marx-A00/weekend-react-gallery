@@ -22,6 +22,7 @@ function GalleryImage({ image ,displayGallery,steps,displayAlternateGallery}){
   }
 
   function handleMouseEnter(e){
+    displayAlternateGallery();
     // // gonna need a Current path variable to keep track of current path
 
     let xCoordinate = Number(e.target.getAttribute('row'));
